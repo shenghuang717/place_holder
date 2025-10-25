@@ -62,27 +62,25 @@
     </section><!-- /Hero Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section transparent-background">
+    <section id="contact" class="contact section transparent-background mt-5">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row gy-4">
+        <div class="row gy-5"> <!-- Increased gy-5 for more vertical spacing between elements -->
 
-          <div class="col-lg-6">
+          <div class="col-lg-6"> <!-- Left column: Email info -->
 
-            <div class="row gy-4">
-
-              <div class="col-md-6">
-                <div class="info-item" data-aos="fade" data-aos-delay="400">
-                  <i class="bi bi-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>shuang2@alumni.scu.edu</p>
-                </div>
-              </div><!-- End Info Item -->
-
+            <div class="info-item" data-aos="fade" data-aos-delay="400"> <!-- Assumes .info-item in main.css for dark box overlay -->
+              <i class="bi bi-envelope" style="color: #dc3545; font-size: 2rem; margin-bottom: 1rem; display: block;"></i> <!-- Red envelope, larger -->
+              <h3>Email Us</h3>
+              <p>shuang2@alumni.scu.edu</p>
             </div>
 
-          </div>
+          </div><!-- End Left Column -->
+
+          <div class="col-lg-6"> <!-- Right column: MacBook image -->
+            <img src="assets/img/macbook.jpg" alt="Contact us on your device" class="img-fluid rounded opacity-75"> <!-- Semi-transparent; upload image here -->
+          </div><!-- End Right Column -->
 
         </div>
 
@@ -92,10 +90,10 @@
 
   </main>
 
-  <footer id="footer" class="footer transparent-background">
+  <footer id="footer" class="footer transparent-background pb-5"> <!-- Added pb-5 for bottom spacing -->
 
     <div class="container">
-      <div class="copyright text-center ">
+      <div class="copyright text-center mt-4"> <!-- Added mt-4 for top spacing from image -->
         <p>© <span>Copyright</span> <strong class="px-1 sitename">EUSAH.com</strong> <span>All Rights Reserved</span></p>
       </div>
     </div>
