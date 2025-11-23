@@ -49,32 +49,37 @@
     });
   });
 
-  function php_email_form_submit(thisForm, action, formData) {
-    fetch(action, {
-      method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
-    })
-    .then(response => {
-      if( response.ok ) {
-        return response.text();
-      } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
-      }
-    })
-    .then(data => {
-      thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
-      } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
-      }
-    })
-    .catch((error) => {
-      displayError(thisForm, error);
-    });
-  }
+ function php_email_form_submit(thisForm, action, formData) {
+  fetch(action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error(`${response.status} ${response.statusText} ${response.url}`);
+    }
+  })
+  .then(data => {
+    thisForm.querySelector('.loading').classList.remove('d-block');
+    if (data.ok) {
+      thisForm.querySelector('.sent-message').classList.add('d-block');
+      thisForm.reset();
+      // Optional: Redirect to Formspree's thank-you page if provided
+      // if (data.next) window.location.href = data.next;
+    } else {
+      throw new Error(data.error || 'Form submission failed and no error message returned from: ' + action);
+    }
+  })
+  .catch((error) => {
+    displayError(thisForm, error);
+  });
+}
 
   function displayError(thisForm, error) {
     thisForm.querySelector('.loading').classList.remove('d-block');
@@ -83,3 +88,4 @@
   }
 
 })();
+
